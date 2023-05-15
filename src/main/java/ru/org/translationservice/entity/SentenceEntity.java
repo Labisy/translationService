@@ -1,14 +1,8 @@
 package ru.org.translationservice.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,11 +10,18 @@ public class SentenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "date", nullable = false)
+    private Date date;
+    @Column(name = "param", nullable = false)
+    private String param;
+    @Column(name = "input_word", nullable = false)
     private String input;
+    @Column(name = "translated_word", nullable = false)
     private String output;
+    @Column(name = "date", nullable = false)
     private String ip;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sentence")
-    private List<WordsEntity> words;
+    private List<WordEntity> words;
 
     public SentenceEntity() {
     }
@@ -31,6 +32,22 @@ public class SentenceEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getParam() {
+        return param;
+    }
+
+    public void setParam(String param) {
+        this.param = param;
     }
 
     public String getInput() {
@@ -55,5 +72,13 @@ public class SentenceEntity {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public List<WordEntity> getWords() {
+        return words;
+    }
+
+    public void setWords(List<WordEntity> words) {
+        this.words = words;
     }
 }

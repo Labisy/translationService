@@ -6,5 +6,4 @@ import ru.org.translationservice.entity.SentenceEntity;
 
 @Repository
 public interface SentenceRepo extends CrudRepository<SentenceEntity, Long> {
-
 }
